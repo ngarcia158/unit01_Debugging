@@ -33,8 +33,24 @@ function verifyAcres() {
   testFormCompleteness();
 }
 /* verify at least one crops checkbox is checked */
-function rurnTime(){
-  testFormCompleteness()
+function verifyCrops() {
+  try {
+    for (var i = 0; i < 7; i++) {
+      if (cropsFieldset.getElementsByTagName("input")[i].checked) {
+        cropsComplete = true;
+        messageElement.innerHTML = "";
+        testFormCompleteness();
+        i = 8;
+      }
+    }
+    if (i === 7) {
+      throw "Please select at least one crop.";
+    }
+  } catch (message) {
+    cropsComplete = false;
+    messageHeadElement.innerHTML = "";
+    messageElement.innerHTML = message;
+  }
 }
 /* verify months text box entry is between 1 and 12 */
 function verifyMonths() {
